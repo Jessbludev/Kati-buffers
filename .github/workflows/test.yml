@@ -1,0 +1,48 @@
+name: test
+
+on:
+  push:
+    branches: [main, "v0.7-engine"]
+  pull_request:
+
+jobs:
+  c:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: C tests + CLI
+        run: |
+          make -C c test
+          make -C c cli
+
+  cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: C++ guest examples
+        run: |
+          g++ -std=c++20 -I c/include -I cpp/include cpp/examples/hash.cpp c/src/kati.c -o /tmp/kati-cpp
+          /tmp/kati-cpp
+
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: no_std guest tests
+        run: |
+          rustc --edition 2021 --test rust/src/lib.rs --cfg 'feature="std"' -o /tmp/kati-rust
+          /tmp/kati-rust
+
+  zig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.16.0
+      - name: Zig tests
+        working-directory: zig
+        run: zig build test
+      - name: Freestanding
+        working-directory: zig
+        run: zig build freestanding

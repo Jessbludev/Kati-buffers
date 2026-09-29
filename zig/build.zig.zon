@@ -1,0 +1,16 @@
+.{
+    .name = .kati,
+    .version = "0.7.0",
+    .fingerprint = 0xfb4b6b076eb04110, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.16.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "tests",
+        "docs",
+        "examples",
+        "VERSION",
+        "README.md",
+    },
+}

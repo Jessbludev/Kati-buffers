@@ -1,0 +1,9 @@
+#PBR 1
+.AppConfig {
+  name      = "server-a"
+  version   = 0x0104
+  debug     = false
+  endpoints = ["a.io", "b.io"]
+  limits    = { cpu: 4, ram: 16 }
+  payload   = h"00"
+}

@@ -1,0 +1,9 @@
+@strict
+config AppConfig {
+    name: string @required
+    version: u16
+    debug: bool = false
+    endpoints: array[string] @max(32)
+    limits: map[string,u32]
+    payload: bytes @compress(zstd)
+}
