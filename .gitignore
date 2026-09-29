@@ -1,0 +1,21 @@
+# Zig
+zig-out/
+.zig-cache/
+zig/.zig-cache/
+*.o
+*.a
+
+# C CLI / tests
+/c/kati
+/c/tests/test
+/c/src/*.o
+
+# Rust
+rust/target/
+
+# OS / editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
